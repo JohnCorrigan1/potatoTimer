@@ -1,10 +1,45 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db, app } from "../lib/firebase";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 
 const Timer = (props) => {
     const [timeLeft, setTimeLeft] = useState(props.minutes * 60);
     const [isOver, setIsOver] = useState(false);
     const aughRef = useRef(null);
     const roosterRef = useRef(null);
+
+
+
+    const incrementTodaysSessions = () => {
+        // const db = getFirestore();
+        // const userRef = doc(db, "users", uid);
+        // const todaysSessionsRef = doc(userRef, "todaysSessions", "todaysSessions");
+        // updateDoc(todaysSessionsRef, {
+        //     sessions: increment(1)
+        // })
+
+        const userRef = db.collection('users').doc(user.uid);
+const sessionsRef = userRef.collection('sessions');// Get the current date
+        const now = new Date();
+        const mm_dd_yyyy = `${now.getMonth()+1}_${now.getDate()}_${now.getFullYear()}`;
+
+// Update the session count for the current date
+sessionsRef.doc(mm_dd_yyyy).set({
+  count: firebase.firestore.fieldvalue.increment(1)
+}, { merge: true })
+.then(() => {
+  console.log('session count updated successfully!');
+})
+.catch((error) => {
+  console.error('error updating session count: ', error);
+});
+    }
+
+    const [user] = useAuthState(auth);
+
 
     useEffect(() => {
         if(timeLeft === 0)
@@ -27,6 +62,9 @@ const Timer = (props) => {
             props.setIsBreak(true)
             setTimeLeft(props.breakTime * 60)
             props.setSessions(props.sessions + 1);
+            if(user){
+                incrementTodaysSessions(user.uid);
+            }
         }
         if(timeLeft === 0 && props.isBreak){
             playRooster();

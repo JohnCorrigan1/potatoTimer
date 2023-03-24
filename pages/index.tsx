@@ -7,7 +7,7 @@ import Control from "@/components/Control";
 import Stats from "@/components/Stats";
 
 const Home: NextPage = () => {
-  const [minutes, setMinutes] = useState(25);
+  const [minutes, setMinutes] = useState(1);
   const [isStarted, setIsStarted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isReset, setIsReset] = useState(false);
