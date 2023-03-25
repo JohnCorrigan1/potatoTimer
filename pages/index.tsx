@@ -1,19 +1,52 @@
 import { type NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Timer from "@/components/Timer";
 import NavBar from "@/components/NavBar";
 import Control from "@/components/Control";
 import Stats from "@/components/Stats";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db, app } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+
 
 const Home: NextPage = () => {
-  const [minutes, setMinutes] = useState(1);
+  const [minutes, setMinutes] = useState(25);
   const [isStarted, setIsStarted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isReset, setIsReset] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [breakTime, setBreakTime] = useState(5);
   const [sessions, setSessions] = useState(0);
+
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      getData();
+    }
+     }, [user]);
+
+  const getData = async () => {
+
+const now = new Date();
+    const dateStr = `${now.getMonth()+1}-${now.getDate()}-${now.getFullYear()}`;
+
+      const docRef = doc(db, "users", user!.uid, "sessions", dateStr);
+
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+  setSessions(docSnap.data()!.sessions);
+} else {
+  // doc.data() will be undefined in this case
+  console.log("No such document!");
+  setSessions(0);
+}
+  }
+
 
   return (
     <>

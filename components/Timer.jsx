@@ -3,43 +3,25 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, app } from "../lib/firebase";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { doc, setDoc } from "firebase/firestore"; 
+
 
 
 const Timer = (props) => {
     const [timeLeft, setTimeLeft] = useState(props.minutes * 60);
     const [isOver, setIsOver] = useState(false);
     const aughRef = useRef(null);
-    const roosterRef = useRef(null);
+        const roosterRef = useRef(null);
+        const [user] = useAuthState(auth);
 
-
-
-    const incrementTodaysSessions = () => {
-        // const db = getFirestore();
-        // const userRef = doc(db, "users", uid);
-        // const todaysSessionsRef = doc(userRef, "todaysSessions", "todaysSessions");
-        // updateDoc(todaysSessionsRef, {
-        //     sessions: increment(1)
-        // })
-
-        const userRef = db.collection('users').doc(user.uid);
-const sessionsRef = userRef.collection('sessions');// Get the current date
-        const now = new Date();
-        const mm_dd_yyyy = `${now.getMonth()+1}_${now.getDate()}_${now.getFullYear()}`;
-
-// Update the session count for the current date
-sessionsRef.doc(mm_dd_yyyy).set({
-  count: firebase.firestore.fieldvalue.increment(1)
-}, { merge: true })
-.then(() => {
-  console.log('session count updated successfully!');
-})
-.catch((error) => {
-  console.error('error updating session count: ', error);
+const incrementTodaysSessions = async () => {
+    const now = new Date();
+    const dateStr = `${now.getMonth()+1}-${now.getDate()}-${now.getFullYear()}`;
+     //const sessionsRef = db.collection('users').doc(userId).collection('sessions').doc(dateStr);
+    await setDoc(doc(db, "users", user.uid, "sessions", dateStr), {
+        sessions: props.sessions + 1
 });
-    }
-
-    const [user] = useAuthState(auth);
-
+  };
 
     useEffect(() => {
         if(timeLeft === 0)
@@ -51,6 +33,7 @@ sessionsRef.doc(mm_dd_yyyy).set({
             setTimeLeft(props.minutes * 60);
             props.setIsReset(false);
             props.setIsStarted(false);
+            props.setIsBreak(false);
         }
         if(props.isPaused)
             return
@@ -61,10 +44,10 @@ sessionsRef.doc(mm_dd_yyyy).set({
             props.setIsStarted(false)
             props.setIsBreak(true)
             setTimeLeft(props.breakTime * 60)
-            props.setSessions(props.sessions + 1);
             if(user){
                 incrementTodaysSessions(user.uid);
             }
+            props.setSessions(props.sessions + 1);
         }
         if(timeLeft === 0 && props.isBreak){
             playRooster();
@@ -78,7 +61,7 @@ sessionsRef.doc(mm_dd_yyyy).set({
             setTimeLeft((timeLeft) => timeLeft - 1);
         }, 1000);
         return () => clearInterval(interval);
-    }, [props.isPaused, props.isReset, props.isStarted, timeLeft]);
+    }, [props.isPaused, props.isReset, props.isStarted, isOver]);
 
     const playAugh = () => {
         aughRef.current?.play();
