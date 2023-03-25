@@ -2,6 +2,7 @@ import SignIn from "./SignIn";
 import { auth } from "../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ThemePicker from "./ThemePicker";
+import Link from "next/link";
 
 
 const NavBar: React.FC = () => {
@@ -13,7 +14,7 @@ const NavBar: React.FC = () => {
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">Potato Timer</a>
       </div>
-
+<Link href="/leaderboard"><button className="btn btn-ghost normal-case text-xl ml-5">leaderboard</button></Link>
 <ThemePicker />
       {!user ? (
       <label htmlFor="my-modal-6" className=" ml-5 btn btn-ghost btn-seconday">
