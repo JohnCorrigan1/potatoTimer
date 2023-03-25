@@ -1,6 +1,7 @@
 import SignIn from "./SignIn";
 import { auth } from "../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ThemePicker from "./ThemePicker";
 
 
 const NavBar: React.FC = () => {
@@ -12,11 +13,13 @@ const NavBar: React.FC = () => {
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">Potato Timer</a>
       </div>
+
+<ThemePicker />
       {!user ? (
-      <label htmlFor="my-modal-6" className="btn btn-ghost btn-seconday">
+      <label htmlFor="my-modal-6" className=" ml-5 btn btn-ghost btn-seconday">
         Sign In
       </label>) : (
-      <div className="flex-none gap-2">
+      <div className="flex-none gap-2 ml-5">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -49,14 +52,9 @@ const NavBar: React.FC = () => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <SignIn />
-          <h3 className="text-2xl font-bold">Congratulations!</h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
           <div className="modal-action">
             <label htmlFor="my-modal-6" className="btn">
-              Yay!
+              Nice Potato
             </label>
           </div>
         </div>

@@ -11,10 +11,18 @@ const SignIn: React.FC = () => {
     toast.success("Signed in with Google");
   };
 return (
-    <div>
-        <p>Sign in</p>
+    <div className="flex flex-col items-center justify-center gap-5">
+
+    <p className="text-xl font-bold ">Sign in</p>
+      <Image
+      src="/potatoman.png"
+      alt="potatoman"
+      width={300}
+      height={300}
+      className="rounded-lg shadow-xl"/>
+
   <button
-          className="bg-zinc-200 rounded-md p-2 flex gap-8 items-center shadow-sm border w-full text-black justify-center active:scale-95"
+          className="bg-zinc-200 max-w-[300px] rounded-md p-2 flex gap-8 items-center shadow-sm border w-full text-black justify-center active:scale-95"
           onClick={signInWithGoogle}
         >
           <Image
