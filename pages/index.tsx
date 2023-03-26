@@ -38,7 +38,7 @@ const now = new Date();
 const docSnap = await getDoc(docRef);
 
 if (docSnap.exists()) {
-  setHours(docSnap.data()!.hours);
+  setHours(docSnap.data()!.hours.toFixed(2))
 } else {
   // doc.data() will be undefined in this case
   setHours(0);
