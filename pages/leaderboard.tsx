@@ -1,8 +1,9 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
+import Leaderboard from "../components/Leaderboard";
 
-const Leaderboard: NextPage = () => {
+const LeaderboardPage: NextPage = () => {
   return (
       <>
           <Head>
@@ -11,9 +12,11 @@ const Leaderboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
+      <Leaderboard />
+
       </>
 
   );
 };
 
-export default Leaderboard;
+export default LeaderboardPage;

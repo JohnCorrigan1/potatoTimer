@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   const [isReset, setIsReset] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [breakTime, setBreakTime] = useState(5);
-  const [sessions, setSessions] = useState(0);
+  const [hours, setHours] = useState(0);
 
   const [user] = useAuthState(auth);
 
@@ -33,17 +33,15 @@ const Home: NextPage = () => {
 const now = new Date();
     const dateStr = `${now.getMonth()+1}-${now.getDate()}-${now.getFullYear()}`;
 
-      const docRef = doc(db, "users", user!.uid, "sessions", dateStr);
+      const docRef = doc(db, "users", user!.uid, "hours", dateStr);
 
 const docSnap = await getDoc(docRef);
 
 if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-  setSessions(docSnap.data()!.sessions);
+  setHours(docSnap.data()!.hours);
 } else {
   // doc.data() will be undefined in this case
-  console.log("No such document!");
-  setSessions(0);
+  setHours(0);
 }
   }
 
@@ -70,8 +68,8 @@ if (docSnap.exists()) {
             setBreakTime={setBreakTime}
             setIsBreak={setIsBreak}
             isBreak={isBreak}
-            sessions={sessions}
-            setSessions={setSessions}
+            hours={hours}
+            setHours={setHours}
           />
           <Control
             isStarted={isStarted}
@@ -81,7 +79,7 @@ if (docSnap.exists()) {
             isReset={isReset}
             setIsReset={setIsReset}
           />
-          <Stats sessions={sessions} />
+          <Stats hours={hours} />
         </div>
       </main>
     </>

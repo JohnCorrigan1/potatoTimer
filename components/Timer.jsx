@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, app } from "../lib/firebase";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, increment, getDoc, updateDoc } from "firebase/firestore";
 
 
 
@@ -17,10 +17,20 @@ const Timer = (props) => {
 const incrementTodaysSessions = async () => {
     const now = new Date();
     const dateStr = `${now.getMonth()+1}-${now.getDate()}-${now.getFullYear()}`;
-     //const sessionsRef = db.collection('users').doc(userId).collection('sessions').doc(dateStr);
-    await setDoc(doc(db, "users", user.uid, "sessions", dateStr), {
-        sessions: props.sessions + 1
-});
+    const hoursRef = doc(db, "users", user.uid, "hours", dateStr);
+    const docSnap = await getDoc(hoursRef);
+    if(docSnap.exists()){
+        await updateDoc(hoursRef,{
+            hours: increment(props.minutes / 60)
+        })
+    } else {
+        await setDoc(hoursRef, {
+            hours: props.minutes / 60
+        })
+    }
+  //   await setDoc(doc(db, "users", user.uid, "sessions", dateStr), {
+//         hours: props.minutes / 60,
+// });
   };
 
     useEffect(() => {

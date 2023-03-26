@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { themeChange } from "theme-change";
-import { Button } from 'react-daisyui'
-
 
 const ThemePicker: React.FC = () => {
 

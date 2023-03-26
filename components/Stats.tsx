@@ -1,4 +1,4 @@
-const Stats: React.FC<{ sessions: number }> = (props) => {
+const Stats: React.FC<{ hours: number }> = (props) => {
   return (
     <>
       <div className="mt-10">
@@ -9,7 +9,7 @@ const Stats: React.FC<{ sessions: number }> = (props) => {
       <div className="stats shadow bg-base-300">
         <div className="stat place-items-center w-[120px]">
           <div className="stat-title">Today</div>
-          <div className="stat-value">{props.sessions}</div>
+          <div className="stat-value">{props.hours}</div>
         </div>
 
         <div className="stat place-items-center w-[120px]">
