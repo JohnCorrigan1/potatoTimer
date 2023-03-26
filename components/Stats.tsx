@@ -3,7 +3,7 @@ const Stats: React.FC<{ hours: number }> = (props) => {
     <>
       <div className="mt-10">
         <h1 className="text-primary-content text-2xl font-bold">
-          Session Stats
+          Hours Worked
         </h1>
       </div>
       <div className="stats shadow bg-base-300">
