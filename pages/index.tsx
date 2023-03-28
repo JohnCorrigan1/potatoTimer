@@ -10,13 +10,13 @@ import { auth, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
 const Home: NextPage = () => {
-    const [minutes, setMinutes] = useState(.5);
+    const [minutes, setMinutes] = useState(25);
     const [isStarted, setIsStarted] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [isReset, setIsReset] = useState(false);
     const [isBreak, setIsBreak] = useState(false);
     const [startedAt, setStartedAt] = useState(Date.now());
-    const [breakTime, setBreakTime] = useState(.4);
+    const [breakTime, setBreakTime] = useState(5);
     const [hours, setHours] = useState(0);
 
     const [user] = useAuthState(auth);
