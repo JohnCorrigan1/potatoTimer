@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Potato Timer</a>
+        <Link  href="/" className="btn btn-ghost normal-case text-xl">Potato Timer</Link>
       </div>
 <Link href="/leaderboard"><button className="btn btn-ghost normal-case text-xl ml-5">leaderboard</button></Link>
 <ThemePicker />
