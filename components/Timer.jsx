@@ -8,7 +8,7 @@ import { doc, setDoc, increment, getDoc, updateDoc } from "firebase/firestore";
 
 
 const Timer = (props) => {
-  const [timeLeft, setTimeLeft] = useState(props.minutes * 60);
+
   const [isOver, setIsOver] = useState(false);
   const aughRef = useRef(null);
   const roosterRef = useRef(null);
@@ -32,56 +32,57 @@ const Timer = (props) => {
   };
 
   useEffect(() => {
-    if (props.isPaused) return
     if (!props.isStarted) return
+    if (props.isPaused) return
 
-    if (timeLeft % 5 === 0 && !props.isBreak) {
-      setTimeLeft(Math.round((props.startedAt + (props.minutes * 60000) - Date.now()) / 1000))
+      if (props.timeLeft % 5 === 0 && !props.isBreak) {
+          props.setTimeLeft(Math.round((props.startedAt + (props.minutes * 60000) - Date.now()) / 1000))
     }
 
-    if (timeLeft % 5 === 0 && props.isBreak) {
-      setTimeLeft(Math.round((props.startedAt + (props.breakTime * 60000) - Date.now()) / 1000))
+      if (props.timeLeft % 5 === 0 && props.isBreak) {
+          props.setTimeLeft(Math.round((props.startedAt + (props.breakTime * 60000) - Date.now()) / 1000))
     }
 
-    if (timeLeft === 0)
+      if (props.timeLeft === 0)
       setIsOver(true)
 
     const timer = setTimeout(() => {
-      setTimeLeft((timeLeft) => timeLeft - 1);
+        props.setTimeLeft((timeLeft) => timeLeft - 1);
     }, 1000);
     return () => clearTimeout(timer)
 
-  }, [timeLeft, props.isPaused, props.isStarted]);
+  }, [props.timeLeft, props.isPaused, props.isStarted]);
 
   useEffect(() => {
     if (props.isReset) {
-      setTimeLeft(props.minutes * 60);
+        props.setTimeLeft(props.minutes * 60);
       props.setIsReset(false);
       props.setIsStarted(false);
       props.setIsBreak(false);
     }
     if (!props.isStarted)
       return
-    if (timeLeft === 0 && !props.isBreak) {
+
+
+      if (props.timeLeft === 0 && !props.isBreak) {
       const hours = props.hours + (props.minutes / 60);
       props.setHours(parseInt(hours).toFixed(2));
       playAugh();
       props.setIsStarted(false)
       props.setIsBreak(true)
-      setTimeLeft(props.breakTime * 60)
+        props.setTimeLeft(props.breakTime * 60)
       if (user) {
         incrementTodaysHours(user.uid);
       }
     }
-    if (timeLeft === 0 && props.isBreak) {
+      if (props.timeLeft === 0 && props.isBreak) {
       playRooster();
       props.setIsStarted(false)
       props.setIsBreak(false)
-      setTimeLeft(props.minutes * 60)
+          props.setTimeLeft(props.minutes * 60)
     }
 
-  }, [props.isPaused, props.isReset, props.isStarted, isOver, timeLeft]);
-
+  }, [props.isPaused, props.isReset, props.isStarted, isOver, props.timeLeft]);
 
   const getData = async () => {
 
@@ -107,8 +108,8 @@ const Timer = (props) => {
     roosterRef.current?.play();
   }
 
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
+    const minutes = Math.floor(props.timeLeft / 60);
+    const seconds = props.timeLeft % 60;
 
   return (
     <div className="grid auto-cols-max grid-flow-col gap-5 text-center">

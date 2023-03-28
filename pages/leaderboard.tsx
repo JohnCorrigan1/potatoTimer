@@ -13,11 +13,11 @@ const LeaderboardPage: NextPage = () => {
       </Head>
       <NavBar />
 
-      <div className="w-full h-[70vh] flex justify-center items-center flex-col">
-        <h1 className="text-3xl font-bold">Cumming soon...</h1>
-        <p className="text-xl font-semibold">start racking up hours now they will count</p>
-      </div>
-      {/* <Leaderboard /> */}
+      {/* <div className="w-full h-[70vh] flex justify-center items-center flex-col">
+          <h1 className="text-3xl font-bold">Cumming soon...</h1>
+          <p className="text-xl font-semibold">start racking up hours now they will count</p>
+          </div> */}
+      <Leaderboard />
 
       </>
 
