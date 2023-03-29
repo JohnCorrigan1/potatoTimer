@@ -14,13 +14,13 @@ const Leaderboard: React.FC = () => {
 
 const data: any = []
     useEffect(() => {
+        if(!user) return
         setUserData([])
         const getUsers = async () => {
             const querySnapshot = await getDocs(collection(db, "users"));
             querySnapshot.forEach((doc) => {
                 getData(doc.id, doc.data().displayName);
             });
-
         }
         getUsers();
 
@@ -39,12 +39,7 @@ const data: any = []
         }
     }
         data.push({ displayName: name, hours: hours.toFixed(2) })
-        /* if(userData.includes({ displayName: name, hours: hours.toFixed(2) })) return */
-        /* setUserData((prev: any) => [...prev, { displayName: name, hours: hours.toFixed(2) }]) */
-        /* setUserData(userData.sort((a: any, b: any) => b.hours - a.hours)) */
         setUserData(data.sort((a: any, b: any) => b.hours - a.hours))
-        console.log("userD", userData)
-        console.log("data", data)
     }
 
     return (
@@ -56,17 +51,7 @@ const data: any = []
                     <h2 className="w-full flex justify-center text-xl">Hacker</h2>
                     <h2 className="w-full flex justify-center text-xl">Hours Worked</h2>
                 </>
-                <>
-                    <h2 className="w-full flex justify-center text-xl">1</h2>
-                    <h2 className="w-full flex justify-center text-xl">John Doe</h2>
-                    <h2 className="w-full flex justify-center text-xl">100</h2>
-                </>
-                <>
-                    <h2 className="w-full flex justify-center text-xl">2</h2>
-                    <h2 className="w-full flex justify-center text-xl">John Doe</h2>
-                    <h2 className="w-full flex justify-center text-xl">100</h2>
-                </>
-                {userData.map((user: any, index: any) => (
+               {userData.map((user: any, index: any) => (
                     <>
                         <h2 className="w-full flex justify-center text-xl">{index + 3}</h2>
                         <h2 className="w-full flex justify-center text-xl">{user.displayName}</h2>
