@@ -53,7 +53,7 @@ const data: any = []
                 </>
                {userData.map((user: any, index: any) => (
                     <>
-                        <h2 className="w-full flex justify-center text-xl">{index + 3}</h2>
+                        <h2 className="w-full flex justify-center text-xl">{index + 1}</h2>
                         <h2 className="w-full flex justify-center text-xl">{user.displayName}</h2>
                         <h2 className="w-full flex justify-center text-xl">{user.hours}</h2>
                     </>
