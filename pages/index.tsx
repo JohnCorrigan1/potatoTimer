@@ -25,8 +25,13 @@ const Home: NextPage = () => {
     useEffect(() => {
         if (user) {
             getData();
+            getTime();
         }
     }, [user]);
+
+    useEffect(() => {
+        setTimeLeft(minutes * 60);
+    }, [minutes]);
 
     const getData = async () => {
 
@@ -39,6 +44,15 @@ const Home: NextPage = () => {
             setHours(docSnap.data()!.hours.toFixed(2))
         } else {
             setHours(0);
+        }
+    }
+
+    const getTime = async () => {
+        const docRef = doc(db, "users", user!.uid);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()) {
+            setMinutes(docSnap.data()!.workTime);
+            setBreakTime(docSnap.data()!.breakTime);
         }
     }
 

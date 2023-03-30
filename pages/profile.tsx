@@ -13,6 +13,8 @@ const Profile: NextPage = () => {
 const [user] = useAuthState(auth)
 const [username, setUsername] = useState("")
 const [lifeTimeHours, setLifeTimeHours] = useState(0)
+const [workTime, setWorkTime] = useState(0)
+const [breakTime, setBreakTime] = useState(0)
 
 useEffect(() => {
     if (user) {
@@ -20,6 +22,8 @@ useEffect(() => {
         getDoc(docRef).then((doc) => {
             if (doc.exists()) {
                 setUsername(doc.data().displayName)
+                setWorkTime(doc.data().workTime)
+                setBreakTime(doc.data().breakTime)
                 getHours(user.uid)
             } else {
                 console.log("No such document!")
@@ -52,7 +56,7 @@ useEffect(() => {
             </Head>
            <NavBar/>
            <div className="flex justify-center items-center ">
-           <ProfileInfo name={username} lifeTimeHours={lifeTimeHours} />
+           <ProfileInfo name={username} lifeTimeHours={lifeTimeHours} workTime={workTime} breakTime={breakTime} />
            </div>
         </>
     )
