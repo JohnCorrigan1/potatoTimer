@@ -32,13 +32,10 @@ const NavBar: React.FC = () => {
             className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
+              <Link href="/profile" className="justify-between">
                 Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
+                <span className="badge">potato</span>
+              </Link>
             </li>
             <li>
               <a onClick={() => auth.signOut()}>Logout</a>

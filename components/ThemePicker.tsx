@@ -10,7 +10,7 @@ useEffect(() => {
 
 <div className="dropdown dropdown-end">
   <label tabIndex={0} className="btn m-1 btn-ghost normal-case text-xl">Themes</label>
-  <ul tabIndex={0} className="dropdown-content menu p-2 w-[350px] shadow bg-base-100 rounded-box  max-h-[500px]  overflow-y-scroll">
+  <ul tabIndex={0} className="dropdown-content menu p-2 w-[400px] overflow-none shadow bg-base-100 rounded-box  max-h-[500px]">
     <li data-set-theme="potato"><a>Potato</a></li>
     <li data-set-theme="light"><a>Light</a></li>
     <li data-set-theme="dark"><a>Dark</a></li>

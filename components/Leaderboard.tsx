@@ -44,13 +44,14 @@ const data: any = []
 
     return (
         <div>
-            <h1>Leaderboard</h1>
+        <div className="w-full flex justify-center items-center p-10">
+            <h1 className="text-3xl font-bold">Leaderboard</h1>
+        </div>
             <div className=" table">
-                <>
+
                     <h2 className="w-full flex justify-center text-xl">Rank</h2>
                     <h2 className="w-full flex justify-center text-xl">Hacker</h2>
                     <h2 className="w-full flex justify-center text-xl">Hours Worked</h2>
-                </>
                {userData.map((user: any, index: any) => (
                     <>
                         <h2 className="w-full flex justify-center text-xl">{index + 1}</h2>
