@@ -1,38 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Potato Timer App
 
-## Getting Started
+Welcome to the Potato Timer App! This app is designed to help you manage your work sessions and breaks, similar to the Tomato Timer format. With this app, you no longer need to manually keep track of your work sessions, as it does it for you!
 
-First, run the development server:
+### [Live](https://potato-timer-zen.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 25-minute work sessions with 5-minute breaks
+- Customizable work and break session times
+- Displays your hours worked in your profile
+- Weekly leaderboard to compete with your friends
+- Daily, weekly, monthly, and lifetime hour tracking
+- Sign in with Google
+- Multiple theme options available through Daisy UI library
+- Built with Next.js, TypeScript, and Tailwind CSS
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Usage
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Sign in with your Google account to create a profile and access the app.
+2. Customize your display name and work/break session times.
+3. Choose a theme from the available options.
+4. Start your work session and let the Potato Timer App do the rest!
+5. After each work session, take a break and repeat until you have completed your tasks.
+6. Check your profile to see your hours worked and your ranking on the weekly leaderboard.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To run this app locally, follow these steps:
 
-## Learn More
+1. Clone the repository to your local machine.
+2. Install the required dependencies using `npm install`.
+3. Run the development server using `npm run dev`.
+4. Access the app at `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+### Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you would like to contribute to this project, please fork the repository and create a pull request. We welcome all contributions!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Credits
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This app was created using Next.js, TypeScript, Tailwind CSS, and the Daisy UI library. Special thanks to the creators of these tools for making this project possible.

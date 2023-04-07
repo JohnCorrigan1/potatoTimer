@@ -31,9 +31,17 @@ const Control: React.FC<{
     }
 
     const handlePause = () => {
-        if (!props.isStarted) return;
-        if (props.isPaused)
-            props.setStartedAt(Date.now() - ((props.minutes * 60 * 1000) - props.timeLeft));
+        /* if (!props.isStarted) return; */
+        if (props.isPaused){
+            props.setStartedAt(Date.now() - ((props.minutes * 60000) - (props.timeLeft * 1000)));
+            props.setTimeLeft(Math.round(((props.minutes * 60000) - (Date.now() - props.startedAt)) / 1000));
+            console.log(props.timeLeft);
+
+        }
+
+
+
+
 
         props.setIsPaused(!props.isPaused);
     }

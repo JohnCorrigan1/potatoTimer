@@ -21,11 +21,13 @@ const Timer = (props) => {
     const docSnap = await getDoc(hoursRef);
     if (docSnap.exists()) {
       await updateDoc(hoursRef, {
-        hours: increment(props.minutes / 60)
+        hours: increment(props.minutes / 60),
+        sessions: increment(1)
       })
     } else {
       await setDoc(hoursRef, {
-        hours: props.minutes / 60
+        hours: props.minutes / 60,
+        sessions: 1
       })
     }
     getData();
@@ -55,7 +57,7 @@ const Timer = (props) => {
 
   useEffect(() => {
     if (props.isReset) {
-        props.setTimeLeft(props.minutes * 60);
+      props.setTimeLeft(props.minutes * 60);
       props.setIsReset(false);
       props.setIsStarted(false);
       props.setIsBreak(false);
