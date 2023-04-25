@@ -17,6 +17,7 @@ const [lifeTimeHours, setLifeTimeHours] = useState(0)
 const [workTime, setWorkTime] = useState(0)
 const [breakTime, setBreakTime] = useState(0)
 const [currentSound, setCurrentSound] = useState("")
+const [currentName, setCurrentName] = useState("")
 
 useEffect(() => {
     if (user) {
@@ -28,6 +29,7 @@ useEffect(() => {
                 setBreakTime(doc.data().breakTime)
                 getHours(user.uid)
                 setCurrentSound(doc.data().sound)
+                setCurrentName(doc.data().soundName)
             } else {
                 console.log("No such document!")
             }
@@ -61,7 +63,7 @@ useEffect(() => {
            <div className="flex justify-center items-center ">
            <ProfileInfo name={username} lifeTimeHours={lifeTimeHours} workTime={workTime} breakTime={breakTime} />
            </div>
-           <SoundPicker currentSound={currentSound} setCurrentSound={setCurrentSound} />
+           <SoundPicker currentSound={currentSound} setCurrentSound={setCurrentSound} currentName={currentName} setCurrentName={setCurrentName} />
         </>
     )
 }
