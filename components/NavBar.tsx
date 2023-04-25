@@ -14,7 +14,7 @@ const NavBar: React.FC = () => {
       <div className="flex-1">
         <Link  href="/" className="btn btn-ghost normal-case text-xl">Potato Timer</Link>
       </div>
-<Link href="/leaderboard"><button className="btn btn-ghost normal-case text-xl ml-5">leaderboard</button></Link>
+<Link href="/leaderboard"><button className="btn btn-ghost normal-case text-xl ml-5">Leaderboard</button></Link>
 <ThemePicker />
       {!user ? (
       <label htmlFor="my-modal-6" className=" ml-5 btn btn-ghost btn-seconday">

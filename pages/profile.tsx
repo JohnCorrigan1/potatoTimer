@@ -2,6 +2,7 @@ import { type NextPage } from 'next'
 import Head from 'next/head'
 import NavBar from '@/components/NavBar'
 import ProfileInfo from '@/components/ProfileInfo'
+import SoundPicker from '@/components/SoundPicker'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '@/lib/firebase'
@@ -15,6 +16,7 @@ const [username, setUsername] = useState("")
 const [lifeTimeHours, setLifeTimeHours] = useState(0)
 const [workTime, setWorkTime] = useState(0)
 const [breakTime, setBreakTime] = useState(0)
+const [currentSound, setCurrentSound] = useState("")
 
 useEffect(() => {
     if (user) {
@@ -25,6 +27,7 @@ useEffect(() => {
                 setWorkTime(doc.data().workTime)
                 setBreakTime(doc.data().breakTime)
                 getHours(user.uid)
+                setCurrentSound(doc.data().sound)
             } else {
                 console.log("No such document!")
             }
@@ -58,6 +61,7 @@ useEffect(() => {
            <div className="flex justify-center items-center ">
            <ProfileInfo name={username} lifeTimeHours={lifeTimeHours} workTime={workTime} breakTime={breakTime} />
            </div>
+           <SoundPicker currentSound={currentSound} setCurrentSound={setCurrentSound} />
         </>
     )
 }
