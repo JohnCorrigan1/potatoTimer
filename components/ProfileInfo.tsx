@@ -83,7 +83,7 @@ if(user && props.name !== ""){
     }
 
     return (
-        <div className="w-1/3 min-w-[400px] flex flex-col gap-10 bg-secondary p-10 rounded-xl shadow-xl ">
+        <div className="w-1/3 min-w-[400px] flex flex-col gap-10 bg-base-300 p-10 rounded-xl shadow-xl ">
         <div>
 <h1 className="text-2xl font-semibold mr-auto ml-auto">Display name</h1>
             <div className="flex justify-between border-2 border-base-100 p-3 rounded-lg items-center">
@@ -108,7 +108,7 @@ if(user && props.name !== ""){
             <div className="flex justify-between  border-2 border-base-100 p-3 rounded-lg items-center">
                 <h1 className="text-3xl font-bold">{props.lifeTimeHours}</h1>
                 <div className="dropdown w-1/4">
-                    <label tabIndex={0} className="btn btn-secondary text-lg font-semibold ">{time}</label>
+                    <label tabIndex={0} className="btn btn-secondary text-lg font-semibold w-full ">{time}</label>
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li onClick={() => setTime("Minutes")}><a>Minutes</a></li>
                         <li onClick={() => setTime("Hours")}><a>Hours</a></li>
