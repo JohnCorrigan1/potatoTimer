@@ -20,6 +20,8 @@ const Home: NextPage = () => {
     const [hours, setHours] = useState(0);
     const [sessions, setSessions] = useState(0);
     const [timeLeft, setTimeLeft] = useState(minutes * 60);
+    const [soundName, setSoundName] = useState("")
+    const [soundSource, setSoundSource] = useState("")
 
     const [user] = useAuthState(auth);
 
@@ -27,6 +29,7 @@ const Home: NextPage = () => {
         if (user) {
             getData();
             getTime();
+            getSound();
         }
     }, [user]);
 
@@ -59,6 +62,15 @@ const Home: NextPage = () => {
         }
     }
 
+    const getSound = async () => {
+        const docRef = doc(db, "users", user!.uid);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()) {
+            setSoundName(docSnap.data()!.soundName);
+            setSoundSource(docSnap.data()!.sound);
+        }
+    }
+
     return (
         <>
             <Head>
@@ -88,6 +100,7 @@ const Home: NextPage = () => {
                         setHours={setHours}
                         timeLeft={timeLeft}
                         setTimeLeft={setTimeLeft}
+                        soundSource={soundSource}
                     />
                     <Control
                         startedAt={startedAt}

@@ -131,8 +131,8 @@ const Timer = (props) => {
         </span>
         sec
       </div>
-      <audio ref={aughRef} src="/augh.mp3" />
-      <audio ref={roosterRef} src="/minecraft-scream1.mp3" />
+      <audio ref={aughRef} src={props.soundSource} />
+      <audio ref={roosterRef} src={props.soundSource} />
     </div>
   );
 };
