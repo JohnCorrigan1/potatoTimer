@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
-const AddSound: React.FC = () => {
+const AddSound: React.FC<{setSoundAdded: Dispatch<SetStateAction<boolean>>}> = (props) => {
 
     const [name, setName] = useState('')
     const [url, setUrl] = useState('')
@@ -22,6 +22,7 @@ const AddSound: React.FC = () => {
         })
         setName('')
         setUrl('')
+        props.setSoundAdded(true)
     }
 
     return (

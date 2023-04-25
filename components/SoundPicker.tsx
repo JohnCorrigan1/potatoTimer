@@ -10,6 +10,7 @@ import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 const SoundPicker: React.FC<{currentSound: string, setCurrentSound: Dispatch<SetStateAction<string>>, currentName: string, setCurrentName: Dispatch<SetStateAction<string>>}> = (props) => {
 
     const [user] = useAuthState(auth)
+    const [soundAdded, setSoundAdded] = useState(false)
     const [sounds, setSounds] = useState<any>([])
     useEffect(() => {
         const getSounds = async () => {
@@ -18,8 +19,9 @@ const SoundPicker: React.FC<{currentSound: string, setCurrentSound: Dispatch<Set
             const soundsList = soundsSnapshot.docs.map(doc => doc.data())
             setSounds(soundsList)
         }
+        setSoundAdded(false)
         getSounds()
-    }, [])
+    }, [soundAdded])
 
     return (
         <div className="flex flex-col w-full mt-10">
@@ -34,7 +36,7 @@ const SoundPicker: React.FC<{currentSound: string, setCurrentSound: Dispatch<Set
                 {sounds.map((sound: any) => {
                     return <SoundItem name={sound.name} source={sound.url} setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound}/>
                 })}
-                <AddSound />
+                <AddSound setSoundAdded={setSoundAdded} />
             </div>
             </div>
     )
