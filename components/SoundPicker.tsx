@@ -28,7 +28,7 @@ const SoundPicker: React.FC<{currentSound: string, setCurrentSound: Dispatch<Set
                 <SoundItem name={props.currentName} source={props.currentSound} setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound}/>
             </div>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-10 p-5 justify-center items-center">
-                <SoundItem name="Taco Bell" source="/TacoBell.mp3" setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound} />
+                <SoundItem name="Taco Bell" source="/tacoBell.mp3" setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound} />
                 <SoundItem name="Another One" source="/anotherOne.mp3" setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound} />
                 <SoundItem name="Augh" source="/augh.mp3" setCurrentName={props.setCurrentName} setCurrentSound={props.setCurrentSound}/>
                 {sounds.map((sound: any) => {
